@@ -1,35 +1,20 @@
 ---
 import CardLaunch from "../components/CardLaunch.astro";
-import { type APISpaceXResponse } from "../types/api";
+import { getLastestLaunches } from "../services/spacex";
 
-const res = await fetch("https://api.spacexdata.com/v5/launches/query", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json", // "application" está correctamente escrito
-  },
-  body: JSON.stringify({
-    query: {},
-    options: {
-      sort: {
-        date_unix: "asc",
-      },
-      limit: 12,
-    },
-  }),
-});
-
-const { docs: launches } = (await res.json()) as APISpaceXResponse;
+const launches = await getLastestLaunches();
 ---
 
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-  {launches.map((launch) => (
-    <CardLaunch
-    id = {launch.id} 
-    img={launch.links.patch.small}
-    details={launch.details}
-    flightNumber={launch.flight_number}
-    success={launch.success}
-    />
+  {
+    launches.map((launch) => (
+      <CardLaunch
+        id={launch.id}
+        img={launch.links.patch.small}
+        details={launch.details}
+        flightNumber={launch.flight_number}
+        success={launch.success}
+      />
     ))
-    }
+  }
 </div>
