@@ -18,9 +18,9 @@ export async function getStaticPaths() {
 ---
 
 <Layout title=`Lanzamiento ${launch?.flight_number}`>
-  <article class="flex gap-y-4">
+  <article class="flex gap-y-4 max-sm:flex-col">
     <img
-      class="w-52 h-auto"
+      class="w-52 h-auto mx-auto"
       src={launch?.links.patch.small}
       alt={launch?.name}
     />
