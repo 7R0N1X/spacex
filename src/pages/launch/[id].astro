@@ -16,9 +16,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const launchDateTimeString = launch.date_utc;
-const launchDateTime = new Date(launchDateTimeString);
-const launchDate = launchDateTime.toISOString().slice(0, 10);
+const launchDate: string | undefined = launch?.date_utc?.toString() ? new Date(launch.date_utc.toString()).toISOString().slice(0, 10) : undefined;
 
 export const prerender = true;
 ---
