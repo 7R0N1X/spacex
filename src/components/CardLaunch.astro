@@ -1,13 +1,14 @@
 ---
 interface Props {
   id: string;
+  flightNumber: number;
+  name: string;
   details: string | null;
   img: string;
   success: boolean;
-  flightNumber: number;
 }
 
-const { success, flightNumber, img, id, details } = Astro.props;
+const { success, img, id, details, name, flightNumber } = Astro.props;
 const successText = success ? "Éxito" : "Fracaso";
 ---
 
@@ -16,8 +17,12 @@ const successText = success ? "Éxito" : "Fracaso";
   class="rounded-lg border shadow-md bg-gray-800 border-gray-700
   hover:scale-105 hover:bg-gray-700 hover:border-gray-500 transition flex flex-col"
 >
-  <picture class="flex justify-center p-4">
-    <img class="rounded-lg" src={img} alt={`Patch for launch ${id}`} />
+  <picture class="flex justify-center">
+    <img
+      class="rounded-lg pt-4 h-52 w-52"
+      src={img}
+      alt={`Patch for launch ${id}`}
+    />
   </picture>
 
   <header class="p-4 flex-grow">
@@ -27,7 +32,7 @@ const successText = success ? "Éxito" : "Fracaso";
       {successText}
     </span>
     <h2 class="my-2 text-2xl font-bold tracking-tight text-white">
-      Flight #{flightNumber}
+      Flight #{flightNumber} - {name}
     </h2>
     <p class="font-light text-gray-400">
       {
