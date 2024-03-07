@@ -25,18 +25,20 @@ export const prerender = true;
       src={launch?.links.patch.small}
       alt={launch?.name}
     />
-    <div class="flex flex-col gap-4 ml-4">
+    <div class="flex flex-col gap-4 ml-4 mr-4">
       <h2 class="text-2xl text-white font-bold">
         Flight #{launch?.flight_number} - {launch?.name}
       </h2>
       <p class="text-lg">{launch?.details}</p>
       <iframe
-        class="mx-auto"
+        class="mx-auto max-lg:w-full"
         width="560"
         height="315"
         src={`https://www.youtube.com/embed/${launch?.links.youtube_id}`}
         frameborder="0"
-        allowfullscreen></iframe>
+        allowfullscreen
+      >
+      </iframe>
     </div>
   </article>
 </Layout>
